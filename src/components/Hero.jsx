@@ -48,8 +48,8 @@ export default function Hero() {
           {/* Left Column - Hero Content */}
           <div className="lg:col-span-7 space-y-7 text-left">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-blue/10 border border-accent-blue/25 text-xs font-medium text-accent-blue backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-accent-blue animate-ping" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 dark:bg-accent-blue/10 border border-blue-500/30 dark:border-accent-blue/25 text-xs font-bold text-blue-700 dark:text-accent-blue backdrop-blur-sm shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-accent-blue animate-ping" />
               <span>Computer Science Undergrad • Gauhati University</span>
             </div>
 
@@ -61,15 +61,15 @@ export default function Hero() {
 
               {/* Animated Rotating Role */}
               <div className="h-10 sm:h-12 flex items-center">
-                <span className="text-xl sm:text-3xl font-semibold text-slate-600 dark:text-text-muted font-mono flex items-center">
-                  <span className="text-slate-900 dark:text-white font-bold">{displayedText}</span>
-                  <span className="inline-block w-0.5 h-6 sm:h-8 bg-accent-cyan ml-1 animate-pulse" />
+                <span className="text-xl sm:text-3xl font-semibold text-slate-700 dark:text-text-muted font-mono flex items-center">
+                  <span className="text-slate-900 dark:text-white font-extrabold">{displayedText}</span>
+                  <span className="inline-block w-0.5 h-6 sm:h-8 bg-blue-600 dark:bg-accent-cyan ml-1 animate-pulse" />
                 </span>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-slate-600 dark:text-text-muted max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-700 dark:text-text-muted max-w-2xl leading-relaxed">
               {profileData.bio}
             </p>
 
@@ -87,7 +87,7 @@ export default function Hero() {
               <a
                 href="./rajdeep_mudiar_resume.pdf"
                 download="rajdeep_mudiar_resume.pdf"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-900/80 hover:bg-slate-50 dark:hover:bg-dark-850 border border-slate-200 dark:border-border-subtle hover:border-accent-blue/40 text-slate-800 dark:text-text-primary text-sm font-semibold shadow-sm hover:shadow-glass transition-all duration-200"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-900/80 hover:bg-slate-50 dark:hover:bg-dark-850 border border-slate-300 dark:border-border-subtle hover:border-accent-blue/40 text-slate-900 dark:text-text-primary text-sm font-bold shadow-sm hover:shadow-glass transition-all duration-200"
               >
                 <Download className="w-4 h-4 text-accent-blue" />
                 <span>Download Resume</span>
@@ -96,7 +96,7 @@ export default function Hero() {
 
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-border-subtle/60">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-text-subtle">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-text-subtle">
                 Connect
               </span>
               <div className="flex items-center gap-3">
@@ -104,7 +104,7 @@ export default function Hero() {
                   href={profileData.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white hover:border-accent-blue/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
+                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-700 dark:text-text-muted hover:text-slate-950 dark:hover:text-white hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
                   aria-label="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
@@ -113,14 +113,14 @@ export default function Hero() {
                   href={profileData.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-600 dark:text-text-muted hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
+                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-700 dark:text-text-muted hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
                   aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
                   href={`mailto:${profileData.email}`}
-                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-600 dark:text-text-muted hover:text-accent-cyan hover:border-accent-cyan/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
+                  className="p-2.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-700 dark:text-text-muted hover:text-blue-600 hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-dark-850 transition-all shadow-sm"
                   aria-label="Send Email"
                 >
                   <Mail className="w-4 h-4" />
@@ -137,10 +137,10 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="w-full flex flex-col items-center justify-center pt-8 pb-4 text-slate-400 dark:text-text-subtle animate-bounce">
+      <div className="w-full flex flex-col items-center justify-center pt-8 pb-4 text-slate-500 dark:text-text-subtle animate-bounce">
         <a
           href="#about"
-          className="flex flex-col items-center gap-1.5 text-xs font-mono hover:text-slate-700 dark:hover:text-text-muted transition-colors focus:outline-none"
+          className="flex flex-col items-center gap-1.5 text-xs font-mono font-semibold hover:text-slate-800 dark:hover:text-text-muted transition-colors focus:outline-none"
         >
           <span>Scroll to explore</span>
           <ChevronDown className="w-4 h-4" />
