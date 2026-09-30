@@ -85,8 +85,8 @@ export default function Hero() {
               </a>
 
               <a
-                href="./resume.pdf"
-                download="Rajdeep_Mudiar_Resume.pdf"
+                href="./rajdeep_mudiar_resume.pdf"
+                download="rajdeep_mudiar_resume.pdf"
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-900/80 hover:bg-slate-50 dark:hover:bg-dark-850 border border-slate-200 dark:border-border-subtle hover:border-accent-blue/40 text-slate-800 dark:text-text-primary text-sm font-semibold shadow-sm hover:shadow-glass transition-all duration-200"
               >
                 <Download className="w-4 h-4 text-accent-blue" />

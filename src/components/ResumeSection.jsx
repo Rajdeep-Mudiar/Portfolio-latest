@@ -29,8 +29,8 @@ export default function ResumeSection() {
           {/* Right Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-3.5 z-10 shrink-0 w-full sm:w-auto">
             <a
-              href="./resume.pdf"
-              download="Rajdeep_Mudiar_Resume.pdf"
+              href="./rajdeep_mudiar_resume.pdf"
+              download="rajdeep_mudiar_resume.pdf"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white text-xs sm:text-sm font-semibold shadow-glow-blue hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <Download className="w-4 h-4" />
@@ -38,7 +38,7 @@ export default function ResumeSection() {
             </a>
 
             <a
-              href="./resume.pdf"
+              href="./rajdeep_mudiar_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-dark-950 hover:bg-slate-50 dark:hover:bg-dark-850 border border-slate-200 dark:border-border-subtle hover:border-accent-blue/50 text-slate-800 dark:text-text-primary text-xs sm:text-sm font-semibold transition-all shadow-sm"
