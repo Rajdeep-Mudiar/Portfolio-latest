@@ -19,13 +19,13 @@ const focusAreas = [
     icon: Microscope,
     title: "Scientific Research",
     desc: "Investigating Quantum Key Distribution (QKD) transmission benchmarking and specialized technical document retrieval systems.",
-    accent: "from-emerald-500/20 to-teal-500/20 border-emerald-500/30 text-emerald-400"
+    accent: "from-emerald-500/20 to-teal-500/20 border-emerald-500/30 text-emerald-500 dark:text-emerald-400"
   },
   {
     icon: Trophy,
     title: "Hackathons & Innovation",
     desc: "Semi-finalist at ET-AI Hackathon 2026 (Top 6,000 / 55k+ teams) and active participant in SIH 2024 & Guenerk hackathons.",
-    accent: "from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-400"
+    accent: "from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-500 dark:text-amber-400"
   }
 ];
 
@@ -39,7 +39,7 @@ export default function About() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Background</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             About <span className="text-gradient-primary">Me</span>
           </h2>
           <div className="w-12 h-1 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full mt-3" />
@@ -49,7 +49,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left: Bio card */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="glass-card p-6 sm:p-8 rounded-2xl border border-border-subtle relative overflow-hidden">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-border-subtle relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent-blue/5 rounded-full blur-2xl pointer-events-none" />
               
               <div className="flex items-center gap-3 mb-5">
@@ -57,35 +57,35 @@ export default function About() {
                   <GraduationCap className="w-5 h-5 text-accent-blue" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Rajdeep Mudiar</h3>
-                  <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Rajdeep Mudiar</h3>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-text-muted">
                     <MapPin className="w-3.5 h-3.5 text-accent-cyan" />
                     <span>{profileData.location}</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm sm:text-base text-text-muted leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-text-muted leading-relaxed mb-4">
                 {profileData.aboutDetailed}
               </p>
 
-              <div className="space-y-2.5 pt-3 border-t border-border-subtle">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-text-muted">
+              <div className="space-y-2.5 pt-3 border-t border-slate-200 dark:border-border-subtle">
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-text-muted">
                   <CheckCircle2 className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
                   <span>
-                    <strong className="text-white">Degree:</strong> B.Tech in Computer Science Engineering, Gauhati University (2024–2028)
+                    <strong className="text-slate-900 dark:text-white">Degree:</strong> B.Tech in Computer Science Engineering, Gauhati University (2024–2028)
                   </span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-text-muted">
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-text-muted">
                   <CheckCircle2 className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
                   <span>
-                    <strong className="text-white">Core Focus:</strong> AI/ML, Generative AI, RAG architectures, and Full-Stack Engineering
+                    <strong className="text-slate-900 dark:text-white">Core Focus:</strong> AI/ML, Generative AI, RAG architectures, and Full-Stack Engineering
                   </span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-text-muted">
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-text-muted">
                   <CheckCircle2 className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
                   <span>
-                    <strong className="text-white">Research Orientation:</strong> Quantum Key Distribution (QKD) & Semantic Document Retrieval
+                    <strong className="text-slate-900 dark:text-white">Research Orientation:</strong> Quantum Key Distribution (QKD) & Semantic Document Retrieval
                   </span>
                 </div>
               </div>
@@ -96,12 +96,12 @@ export default function About() {
               {profileData.highlights.map((item, idx) => (
                 <div
                   key={idx}
-                  className="glass-card p-3.5 rounded-xl border-border-subtle/80 hover:border-accent-blue/30 transition-colors"
+                  className="glass-card p-3.5 rounded-xl border border-slate-200 dark:border-border-subtle/80 hover:border-accent-blue/30 transition-colors"
                 >
-                  <div className="text-xs font-mono font-bold text-accent-cyan uppercase tracking-wide mb-1">
+                  <div className="text-xs font-mono font-bold text-accent-blue dark:text-accent-cyan uppercase tracking-wide mb-1">
                     {item.label}
                   </div>
-                  <div className="text-xs text-text-muted leading-snug">
+                  <div className="text-xs text-slate-600 dark:text-text-muted leading-snug">
                     {item.detail}
                   </div>
                 </div>
@@ -116,16 +116,16 @@ export default function About() {
               return (
                 <div
                   key={area.title}
-                  className="glass-card p-5 rounded-2xl border-border-subtle hover:border-accent-blue/40 transition-all duration-300 group flex flex-col justify-between"
+                  className="glass-card p-5 rounded-2xl border border-slate-200 dark:border-border-subtle hover:border-accent-blue/40 transition-all duration-300 group flex flex-col justify-between"
                 >
                   <div>
                     <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${area.accent} border flex items-center justify-center mb-4 group-hover:scale-105 transition-transform`}>
                       <IconComponent className="w-5 h-5" />
                     </div>
-                    <h4 className="text-base font-bold text-white mb-2 group-hover:text-accent-blue transition-colors">
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent-blue transition-colors">
                       {area.title}
                     </h4>
-                    <p className="text-xs text-text-muted leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-text-muted leading-relaxed">
                       {area.desc}
                     </p>
                   </div>

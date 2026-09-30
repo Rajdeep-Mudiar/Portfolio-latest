@@ -4,18 +4,21 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: dark light;
   }
   
   html {
     scroll-behavior: smooth;
-    background-color: #070B14;
   }
 
-  body {
+  html.dark body {
     background-color: #070B14;
     color: #F8FAFC;
-    overflow-x: hidden;
+  }
+
+  html.light body {
+    background-color: #F8FAFC;
+    color: #0F172A;
   }
 
   /* Custom scrollbar */
@@ -23,25 +26,47 @@
     width: 8px;
     height: 8px;
   }
-  ::-webkit-scrollbar-track {
+  
+  html.dark ::-webkit-scrollbar-track {
     background: #070B14;
   }
-  ::-webkit-scrollbar-thumb {
+  html.dark ::-webkit-scrollbar-thumb {
     background: #1E293B;
     border-radius: 4px;
     border: 1px solid rgba(148, 163, 184, 0.1);
   }
-  ::-webkit-scrollbar-thumb:hover {
+  html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6;
+  }
+
+  html.light ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+  html.light ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 4px;
+    border: 1px solid rgba(203, 213, 225, 0.5);
+  }
+  html.light ::-webkit-scrollbar-thumb:hover {
     background: #3B82F6;
   }
 }
 
 @layer utilities {
   .glass-card {
-    background: rgba(13, 19, 33, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+  }
+
+  html.dark .glass-card {
+    background: rgba(13, 19, 33, 0.7);
     border: 1px solid rgba(148, 163, 184, 0.12);
+  }
+
+  html.light .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
   }
 
   .glass-card-hover {
@@ -54,40 +79,69 @@
   }
 
   .glass-nav {
-    background: rgba(7, 11, 20, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+  }
+
+  html.dark .glass-nav {
+    background: rgba(7, 11, 20, 0.85);
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   }
 
-  .text-gradient {
+  html.light .glass-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+  }
+
+  html.dark .text-gradient {
     background: linear-gradient(135deg, #F8FAFC 0%, #94A3B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
+  html.light .text-gradient {
+    background: linear-gradient(135deg, #0F172A 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .text-gradient-primary {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 50%, #0284C7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  html.dark .text-gradient-primary {
     background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 50%, #38BDF8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-purple {
+    background: linear-gradient(135deg, #9333EA 0%, #4F46E5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  html.dark .text-gradient-purple {
     background: linear-gradient(135deg, #C084FC 0%, #818CF8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .bg-grid-pattern {
+  html.dark .bg-grid-pattern {
     background-size: 40px 40px;
     background-image: 
       linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
 
-  .bg-dot-pattern {
-    background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
-    background-size: 24px 24px;
+  html.light .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
   }
 }
 

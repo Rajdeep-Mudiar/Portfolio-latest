@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Terminal, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { profileData } from '../data/profile';
+import { useTheme } from '../context/ThemeContext';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -9,7 +10,6 @@ const navItems = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Hackathons', href: '#hackathons' },
-  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -17,13 +17,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
       // Scroll spy for active section
-      const sections = navItems.map(item => item.href.substring(1));
+      const sections = navItems.map((item) => item.href.substring(1));
       const scrollPosition = window.scrollY + 150;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -53,7 +54,7 @@ export default function Navbar() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -74,17 +75,17 @@ export default function Navbar() {
           className="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-accent-blue/50 rounded-lg p-1"
         >
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-accent-blue to-accent-purple p-[1px] shadow-glow-blue/20">
-            <div className="w-full h-full bg-dark-950 rounded-[11px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
-              <Terminal className="w-4 h-4 text-accent-blue group-hover:text-white transition-colors" />
+            <div className="w-full h-full bg-dark-950 dark:bg-dark-950 bg-white dark:bg-dark-950 rounded-[11px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+              <Terminal className="w-4 h-4 text-accent-blue dark:text-accent-blue group-hover:text-white transition-colors" />
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-extrabold text-sm tracking-wider text-white group-hover:text-accent-blue transition-colors">
+            <span className="font-extrabold text-sm tracking-wider text-slate-900 dark:text-white group-hover:text-accent-blue transition-colors">
               RAJDEEP MUDIAR
             </span>
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              <span className="text-[10px] font-medium text-text-muted">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+              <span className="text-[10px] font-medium text-slate-500 dark:text-text-muted">
                 {profileData.status}
               </span>
             </div>
@@ -92,7 +93,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 bg-dark-900/60 border border-border-subtle/80 px-3 py-1.5 rounded-full backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-1 bg-white/70 dark:bg-dark-900/60 border border-slate-200 dark:border-border-subtle/80 px-3 py-1.5 rounded-full backdrop-blur-md shadow-sm">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
@@ -102,8 +103,8 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 relative ${
                   isActive
-                    ? 'text-white bg-accent-blue/20 font-semibold shadow-sm'
-                    : 'text-text-muted hover:text-white hover:bg-white/5'
+                    ? 'text-accent-blue dark:text-white bg-accent-blue/15 dark:bg-accent-blue/20 font-semibold shadow-sm'
+                    : 'text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -115,8 +116,22 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Button Desktop */}
+        {/* Action Button & Theme Toggle Desktop */}
         <div className="hidden lg:flex items-center gap-3">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl bg-slate-100 dark:bg-dark-900 border border-slate-200 dark:border-border-subtle text-slate-700 dark:text-text-muted hover:text-accent-blue dark:hover:text-white transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-blue cursor-pointer"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-accent-purple" />
+            )}
+          </button>
+
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
@@ -127,11 +142,23 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center">
+        {/* Mobile Menu & Theme Toggle */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-slate-100 dark:bg-dark-850 border border-slate-200 dark:border-border-subtle text-slate-700 dark:text-text-muted hover:text-accent-blue dark:hover:text-white transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-5 h-5 text-amber-400" />
+            ) : (
+              <Moon className="w-5 h-5 text-accent-purple" />
+            )}
+          </button>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-text-muted hover:text-white hover:bg-dark-850 border border-border-subtle focus:outline-none focus:ring-2 focus:ring-accent-blue"
+            className="p-2 rounded-lg text-slate-700 dark:text-text-muted hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-dark-850 border border-slate-200 dark:border-border-subtle focus:outline-none focus:ring-2 focus:ring-accent-blue"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -142,7 +169,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden glass-nav border-b border-border-subtle/60 px-4 pt-3 pb-6 mt-3 space-y-2 animate-fadeIn">
+        <div className="lg:hidden glass-nav border-b border-slate-200 dark:border-border-subtle/60 px-4 pt-3 pb-6 mt-3 space-y-2 animate-fadeIn bg-white/95 dark:bg-dark-950/95">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
@@ -152,8 +179,8 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-accent-blue/20 text-accent-blue font-semibold border-l-2 border-accent-blue'
-                    : 'text-text-muted hover:text-white hover:bg-dark-850'
+                    ? 'bg-accent-blue/15 text-accent-blue font-semibold border-l-2 border-accent-blue'
+                    : 'text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-850'
                 }`}
               >
                 {item.label}

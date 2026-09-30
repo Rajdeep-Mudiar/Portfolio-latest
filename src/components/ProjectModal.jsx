@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, Trophy, Calendar, CheckCircle2, Sparkles, Layers } from 'lucide-react';
+import { X, ExternalLink, Github, Trophy, Calendar, CheckCircle2 } from 'lucide-react';
 
 export default function ProjectModal({ project, isOpen, onClose }) {
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-dark-950/80 backdrop-blur-md"
+          className="fixed inset-0 bg-slate-900/60 dark:bg-dark-950/80 backdrop-blur-md"
           aria-hidden="true"
         />
 
@@ -42,7 +42,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full max-w-2xl bg-dark-900 border border-border-subtle/90 rounded-2xl shadow-2xl p-6 sm:p-8 z-10 my-8 overflow-hidden text-left"
+          className="relative w-full max-w-2xl bg-white dark:bg-dark-900 border border-slate-200 dark:border-border-subtle/90 rounded-2xl shadow-2xl p-6 sm:p-8 z-10 my-8 overflow-hidden text-left"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -53,7 +53,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 rounded-xl bg-dark-950/80 hover:bg-dark-850 text-text-muted hover:text-white border border-border-subtle transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue"
+            className="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-dark-950/80 hover:bg-slate-200 dark:hover:bg-dark-850 text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-border-subtle transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -66,14 +66,14 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 {project.subCategory || project.category}
               </span>
               {project.date && (
-                <span className="text-xs text-text-subtle font-mono flex items-center gap-1">
+                <span className="text-xs text-slate-500 dark:text-text-subtle font-mono flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5" />
                   {project.date}
                 </span>
               )}
             </div>
 
-            <h3 id="modal-title" className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 id="modal-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
               {project.title}
             </h3>
 
@@ -84,7 +84,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             )}
 
             {project.achievement && (
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-semibold mt-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-300 text-xs font-semibold mt-1">
                 <Trophy className="w-3.5 h-3.5 shrink-0" />
                 <span>{project.achievement}</span>
               </div>
@@ -95,10 +95,10 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           <div className="space-y-6">
             {/* Description */}
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-text-subtle mb-2">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-text-subtle mb-2">
                 Overview & Architecture:
               </h4>
-              <p className="text-sm text-text-muted leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-text-muted leading-relaxed">
                 {project.description || project.shortDescription}
               </p>
             </div>
@@ -106,12 +106,12 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             {/* Key Features */}
             {project.keyFeatures && project.keyFeatures.length > 0 && (
               <div>
-                <h4 className="text-xs font-mono uppercase tracking-wider text-text-subtle mb-2.5">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-text-subtle mb-2.5">
                   Key Technical Features:
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {project.keyFeatures.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-text-muted bg-dark-950/60 p-2.5 rounded-lg border border-border-subtle/50">
+                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-600 dark:text-text-muted bg-slate-50 dark:bg-dark-950/60 p-2.5 rounded-lg border border-slate-200 dark:border-border-subtle/50">
                       <CheckCircle2 className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </div>
@@ -122,14 +122,14 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
             {/* Technologies */}
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-text-subtle mb-2">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-text-subtle mb-2">
                 Technologies & Tools:
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-dark-950 border border-border-subtle text-text-primary"
+                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-dark-950 border border-slate-200 dark:border-border-subtle text-slate-800 dark:text-text-primary"
                   >
                     {tech}
                   </span>
@@ -139,7 +139,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
             {/* Links & CTA */}
             {project.links && project.links.length > 0 && (
-              <div className="flex flex-wrap gap-3 pt-3 border-t border-border-subtle/70">
+              <div className="flex flex-wrap gap-3 pt-3 border-t border-slate-200 dark:border-border-subtle/70">
                 {project.links.map((link, idx) => (
                   <a
                     key={idx}

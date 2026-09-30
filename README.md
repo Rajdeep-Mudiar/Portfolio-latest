@@ -6,14 +6,12 @@
 
 ## 🌟 Key Highlights & Features
 
-- **Futuristic Dark Aesthetic**: Tailored color palette (`#070B14`, `#0D1321`, electric blue & purple accents, glassmorphic cards, subtle neural grid animations).
+- **Light & Dark Theme Toggle**: Seamless instantaneous switching between high-tech dark mode (`#070B14`, `#0D1321`) and clean modern light mode (`#F8FAFC`, `#FFFFFF`) with preference persistence in `localStorage`.
 - **Interactive Hero & Neural Visual**: Animated role typewriter, instant resume download, social quick-links, and interactive node diagram.
 - **Structured Skills Matrix**: Filterable category tabs (`All`, `Programming`, `AI/ML`, `LLM/RAG`, `Full Stack`, `Database & Tools`, `Research`) powered by Framer Motion.
 - **Experience Accordion Timeline**: Expandable career trajectory featuring internships & fellowships at **Dev Weekends**, **IIT Guwahati (under Prof. Prithwijit Guha)**, **Coding Blocks**, **Assam Engineering College (Quantum QKD)**, and **Frint.in**.
 - **Project Showcase & Interactive Modals**: Filterable cards for **CareBridge** (ET-AI Hackathon Semi-Finalist — Top 6,000 / 55,000+ teams), **SahayaKISSAN**, **HackDays 3.0**, and **SIH 2024**, complete with detailed architecture pop-ins.
 - **Hackathons Matrix**: Dedicated competitive innovation showcase.
-- **Academic Milestones**: Gauhati University (B.Tech CSE 2024–2028) and Gurukul Grammar Senior Secondary School.
-- **GitHub Integration**: Public repositories showcase and activity heatmap visualization with offline rate-limit resilience.
 - **Contact Hub**: Accessible contact form with mailto and webhook integration support, plus one-click email copying.
 - **Fully Responsive & Accessible**: Flawlessly optimized across mobile, tablet, laptop, and ultra-wide displays with `prefers-reduced-motion` compliance and keyboard accessibility.
 
@@ -45,27 +43,26 @@ Portfolio/
 │   │   ├── BackgroundEffects.jsx # Ambient glowing particles & mesh canvas
 │   │   ├── Contact.jsx       # Contact form & communication cards
 │   │   ├── CustomCursor.jsx  # Subtle desktop cursor glow effect
-│   │   ├── Education.jsx     # Academic milestones
 │   │   ├── Experience.jsx    # Interactive accordion career timeline
 │   │   ├── Footer.jsx        # Footer & navigation return
-│   │   ├── GithubSection.jsx # GitHub profile & repo cards
 │   │   ├── Hackathons.jsx    # Competitive hackathons showcase
 │   │   ├── Hero.jsx          # Hero section with animated role switcher
 │   │   ├── HeroVisual.jsx    # Interactive neural AI system node visual
-│   │   ├── Navbar.jsx        # Glassmorphic sticky navbar with active spy
+│   │   ├── Navbar.jsx        # Glassmorphic sticky navbar with active spy & theme toggle
 │   │   ├── ProjectModal.jsx  # Accessible modal for deep architecture review
 │   │   ├── Projects.jsx      # Filterable project gallery
 │   │   ├── ResumeSection.jsx # Resume callout section
 │   │   └── Skills.jsx        # Filterable skills matrix with layout transitions
+│   ├── context/
+│   │   └── ThemeContext.jsx  # Dark/Light mode state & localStorage manager
 │   ├── data/
-│   │   ├── education.js      # Degree and school details
 │   │   ├── experience.js     # Internships and fellowship data
 │   │   ├── hackathons.js     # Hackathon highlights
 │   │   ├── profile.js        # Bio, headline, and contact links
 │   │   ├── projects.js       # Projects dataset
 │   │   └── skills.js         # Categorized skills dataset
 │   ├── App.jsx               # Root application component
-│   ├── index.css             # Tailwind base styles and utility classes
+│   ├── index.css             # Tailwind base styles, light/dark theme rules
 │   └── main.jsx              # Application entry point
 ├── .gitignore
 ├── index.html                # SEO meta tags and Google fonts
@@ -114,13 +111,9 @@ Run the following commands in your terminal:
 
 ```bash
 git add .
-git commit -m "feat: initial interactive developer portfolio release"
-git remote add origin https://github.com/Rajdeep-Mudiar/Portfolio-latest.git
-git branch -M main
+git commit -m "feat: add light/dark theme toggle and refine sections"
 git push -u origin main
 ```
-
-*(Note: If `origin` is already configured, you can simply run `git push -u origin main`)*
 
 ### Step 2: Enable GitHub Pages in Repository Settings
 1. Open your repository on GitHub: **`https://github.com/Rajdeep-Mudiar/Portfolio-latest`**
@@ -142,15 +135,5 @@ git push
 
 ---
 
-## ⚙️ Customization Guide
-
-- **Profile & Links**: Update details in [`src/data/profile.js`](src/data/profile.js).
-- **Projects**: Add or edit projects in [`src/data/projects.js`](src/data/projects.js).
-- **Experience**: Modify internships and fellowships in [`src/data/experience.js`](src/data/experience.js).
-- **Skills**: Adjust technology categories in [`src/data/skills.js`](src/data/skills.js).
-- **Resume File**: Replace [`public/resume.pdf`](public/resume.pdf) with your updated PDF at any time.
-
----
-
 ## 📄 License
-© 2026 Rajdeep Mudiar. Built with React & Tailwind CSS.
+© 2026 Rajdeep Mudiar.
