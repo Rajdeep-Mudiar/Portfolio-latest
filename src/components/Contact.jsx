@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Github, Send, Copy, Check, MessageSquare, MapPin } from 'lucide-react';
+import { Mail, Linkedin, Github, Copy, Check, MessageSquare, MapPin, ArrowUpRight, Sparkles } from 'lucide-react';
 import { profileData } from '../data/profile';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -14,47 +11,9 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
-
-    if (endpoint) {
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (response.ok) {
-          setSubmitted(true);
-          setFormData({ name: '', email: '', message: '' });
-        } else {
-          throw new Error('Failed to send message via form endpoint');
-        }
-      } catch (err) {
-        // Fallback to mailto
-        window.location.href = `mailto:${profileData.email}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-        setSubmitted(true);
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      // Default mailto fallback
-      window.location.href = `mailto:${profileData.email}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-      setSubmitted(true);
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section id="contact" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 border border-accent-blue/20 text-xs font-mono text-accent-blue uppercase tracking-wider mb-3">
@@ -65,40 +24,23 @@ export default function Contact() {
             Let's <span className="text-gradient-primary">Build Something</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-text-muted max-w-xl">
-            Interested in AI, full-stack development, research, or building something useful? Feel free to reach out.
+            Interested in AI, full-stack development, research, or building something useful? Feel free to reach out directly through any channel below.
           </p>
           <div className="w-12 h-1 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full mt-3" />
         </div>
 
-        {/* Contact Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Info & Direct Links */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="glass-card p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-border-subtle space-y-6">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                Contact Information
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-text-muted leading-relaxed">
-                Whether you have an inquiry regarding internship opportunities, research collaboration, or full-stack software development, my inbox is always open.
-              </p>
-
-              {/* Email Copier Card */}
-              <div className="p-4 rounded-xl bg-slate-100/80 dark:bg-dark-950/80 border border-slate-200 dark:border-border-subtle/80 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="p-2 rounded-lg bg-accent-blue/15 text-accent-blue shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="overflow-hidden">
-                    <span className="text-[10px] font-mono text-slate-500 dark:text-text-subtle uppercase">Email</span>
-                    <p className="text-xs sm:text-sm font-mono text-slate-900 dark:text-white truncate">
-                      {profileData.email}
-                    </p>
-                  </div>
+        {/* Contact Hub Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {/* Email Card */}
+          <div className="glass-card p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-border-subtle hover:border-accent-blue/40 group hover:shadow-glow-blue/20 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-xl bg-accent-blue/15 text-accent-blue">
+                  <Mail className="w-5 h-5" />
                 </div>
-
                 <button
                   onClick={handleCopyEmail}
-                  className="p-2 rounded-lg bg-white dark:bg-dark-900 hover:bg-slate-50 dark:hover:bg-dark-850 text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-border-subtle transition-colors shrink-0 shadow-sm cursor-pointer"
+                  className="p-2 rounded-lg bg-slate-100 dark:bg-dark-900 hover:bg-slate-200 dark:hover:bg-dark-850 text-slate-600 dark:text-text-muted hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-border-subtle transition-colors shadow-sm cursor-pointer"
                   title="Copy email to clipboard"
                   aria-label="Copy email"
                 >
@@ -110,141 +52,105 @@ export default function Contact() {
                 </button>
               </div>
 
-              {/* Direct Social Cards */}
-              <div className="space-y-3">
-                <a
-                  href={profileData.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-slate-100/80 dark:bg-dark-950/80 border border-slate-200 dark:border-border-subtle hover:border-[#0A66C2]/40 transition-colors flex items-center justify-between group shadow-sm"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-[#0A66C2]/15 text-[#0A66C2]">
-                      <Linkedin className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono text-slate-500 dark:text-text-subtle uppercase">LinkedIn</span>
-                      <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white group-hover:text-[#0A66C2] transition-colors">
-                        linkedin.com/in/rajdeep-mudiar
-                      </p>
-                    </div>
-                  </div>
-                </a>
+              <span className="text-[11px] font-mono text-slate-400 dark:text-text-subtle uppercase tracking-wider">
+                Direct Email
+              </span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mt-1 break-all group-hover:text-accent-blue transition-colors">
+                {profileData.email}
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-text-muted mt-2">
+                {copied ? '✓ Copied to clipboard!' : 'Click the button above to copy or button below to write.'}
+              </p>
+            </div>
 
-                <a
-                  href={profileData.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-slate-100/80 dark:bg-dark-950/80 border border-slate-200 dark:border-border-subtle hover:border-accent-purple/40 transition-colors flex items-center justify-between group shadow-sm"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-accent-purple/15 text-accent-purple">
-                      <Github className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono text-slate-500 dark:text-text-subtle uppercase">GitHub</span>
-                      <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white group-hover:text-accent-purple transition-colors">
-                        github.com/Rajdeep-Mudiar
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              {/* Location indicator */}
-              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-text-subtle font-mono pt-2">
-                <MapPin className="w-4 h-4 text-accent-blue dark:text-accent-cyan shrink-0" />
-                <span>{profileData.location}</span>
-              </div>
+            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-border-subtle/60">
+              <a
+                href={`mailto:${profileData.email}`}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-blue hover:text-accent-violet dark:hover:text-white transition-colors"
+              >
+                <span>Compose Email</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
 
-          {/* Right: Contact Form */}
-          <div className="lg:col-span-7">
-            <div className="glass-card p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-border-subtle relative overflow-hidden">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                Send a Direct Message
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-text-muted mb-6">
-                Fill out the form below to initiate contact.
-              </p>
-
-              {submitted ? (
-                <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-500 mx-auto flex items-center justify-center">
-                    <Check className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                    Message Prepared / Dispatched
-                  </h4>
-                  <p className="text-xs text-slate-600 dark:text-text-muted">
-                    Thank you for reaching out! If the form did not open your email client, feel free to write directly to {profileData.email}.
-                  </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-2 text-xs text-accent-blue hover:underline cursor-pointer"
-                  >
-                    Send another message
-                  </button>
+          {/* LinkedIn Card */}
+          <div className="glass-card p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-border-subtle hover:border-[#0A66C2]/40 group hover:shadow-glow-blue/20 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-xl bg-[#0A66C2]/15 text-[#0A66C2]">
+                  <Linkedin className="w-5 h-5" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-mono text-slate-600 dark:text-text-muted mb-1.5 uppercase">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Alex Smith"
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-950 border border-slate-200 dark:border-border-subtle text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-text-subtle focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors shadow-sm"
-                    />
-                  </div>
+              </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-mono text-slate-600 dark:text-text-muted mb-1.5 uppercase">
-                      Your Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="alex@example.com"
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-950 border border-slate-200 dark:border-border-subtle text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-text-subtle focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors shadow-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-xs font-mono text-slate-600 dark:text-text-muted mb-1.5 uppercase">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Discuss an opportunity, project, or research idea..."
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-dark-950 border border-slate-200 dark:border-border-subtle text-slate-900 dark:text-white text-sm placeholder:text-slate-400 dark:placeholder:text-text-subtle focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors resize-none shadow-sm"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white text-sm font-semibold shadow-glow-blue hover:opacity-90 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>{isSubmitting ? 'Processing...' : 'Send Message'}</span>
-                  </button>
-                </form>
-              )}
+              <span className="text-[11px] font-mono text-slate-400 dark:text-text-subtle uppercase tracking-wider">
+                LinkedIn Profile
+              </span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mt-1 group-hover:text-[#0A66C2] transition-colors">
+                Rajdeep Mudiar
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-text-muted mt-2">
+                Connect for professional inquiries, software engineering roles, and networking.
+              </p>
             </div>
+
+            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-border-subtle/60">
+              <a
+                href={profileData.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A66C2] hover:text-[#004182] dark:hover:text-white transition-colors"
+              >
+                <span>View LinkedIn</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* GitHub Card */}
+          <div className="glass-card p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-border-subtle hover:border-accent-purple/40 group hover:shadow-glow-purple/20 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-xl bg-accent-purple/15 text-accent-purple">
+                  <Github className="w-5 h-5" />
+                </div>
+              </div>
+
+              <span className="text-[11px] font-mono text-slate-400 dark:text-text-subtle uppercase tracking-wider">
+                GitHub Repositories
+              </span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mt-1 group-hover:text-accent-purple transition-colors">
+                @Rajdeep-Mudiar
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-text-muted mt-2">
+                Explore open source repositories, projects, and machine learning assignments.
+              </p>
+            </div>
+
+            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-border-subtle/60">
+              <a
+                href={profileData.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-purple hover:text-accent-violet dark:hover:text-white transition-colors"
+              >
+                <span>View GitHub</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Location & Availability Footer Note */}
+        <div className="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="flex items-center gap-2.5 text-xs text-slate-600 dark:text-text-muted">
+            <MapPin className="w-4 h-4 text-accent-blue dark:text-accent-cyan shrink-0" />
+            <span>Based in <strong>{profileData.location}</strong></span>
+          </div>
+
+          <div className="inline-flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-text-muted">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Open to AI/ML & Software Engineering opportunities</span>
           </div>
         </div>
       </div>
